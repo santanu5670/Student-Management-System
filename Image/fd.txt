@@ -1,0 +1,58 @@
+import mysql.connector
+from mysql.connector import Error
+import tkinter.messagebox as tsmg
+from forgot_password import *
+
+class Forgot_database(Forgot_Password):
+    def forgot_data(self):
+        try:
+            if self.cd.get()=='':
+                tsmg.showerror("Error","Candidate Id Required")
+            elif self.sq.get()=='':
+                tsmg.showerror("Error","Sqcurity Question Required")
+            else:
+                connection=mysql.connector.connect(host='localhost',port='3307',database='student_management_system',user='root',password='root')
+
+                query=f"select * from User where candidate_id={self.cd.get()} and Answer='{self.sq.get()}' "
+                mycursor=connection.cursor()
+                mycursor.execute(query)
+                row=mycursor.fetchone()
+                connection.commit()
+                connection.close()
+                # print(row)
+
+                if row==None:
+                    tsmg.showerror("Error","Inavlid Candidate Id and Password")
+                else: 
+                    self.destroy()
+                    if __name__=='__main__':
+                        import reset_database as rd
+                        rd.conection_reset()
+                        rd.mainloop()
+        except Error as e:
+            tsmg.showerror("Error",f"Error Occur due to {str(e)}")
+    def login_window(self):
+        self.destroy()
+        import login_database as ld
+        if __name__=='__main__':
+            ld.connection_login()
+            ld.mainloop()
+
+class connection_forgot(Forgot_database):
+    def __init__(self):
+        super().__init__()
+        #--------------Row4-----------------#
+
+        self.btn_img1=ImageTk.PhotoImage(file="E:\Python(6th sem)\Tkinter\Student management System\\nxt.jpg")
+        self.btn=Button(self.frame1,image=self.btn_img1,bd=0,bg="white",activebackground="white",cursor="hand2",command=self.forgot_data).place(x=23,y=340)
+
+        #--------------Row5-----------------#
+        self.back_to_login=Button(self.frame1,text="Back to Login",bg="white",fg="blue",bd=0,activebackground="white",activeforeground="blue",cursor="hand2",command=self.login_window).place(x=32,y=420)
+
+if __name__=='__main__':
+    window=connection_forgot()
+    window.mainloop()
+
+
+
+

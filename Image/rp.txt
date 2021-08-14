@@ -1,0 +1,34 @@
+from tkinter import *
+from tkinter.ttk import Combobox
+from PIL import Image,ImageTk #pip install pillow
+class Reset(Tk):
+    def __init__(self):
+        super().__init__()
+        self.geometry('644x344+0+0')
+        self.title('Student Management System')
+        p1=PhotoImage(file='E:\Python(6th sem)\Tkinter\Student management System\\NSEC_Logo.png')
+        self.iconphoto(False,p1)
+
+        #Image for Reset Password page
+        self.left_img=ImageTk.PhotoImage(file="E:\Python(6th sem)\Tkinter\Student management System\\forgot-password-reset.png")
+        self.left_img_position=Label(self,image=self.left_img,background="#CCCCFF").place(x=330,y=130,width=350,height=445)
+
+        # Reset Password Frame
+        self.frame1=Frame(self,bg="white")
+        self.frame1.place(x=680,y=130,width=370,height=445)
+
+        #--------------Row1-----------------#
+
+        Label(self.frame1,text="Reset Password",font=("Arial",20,"bold"),bg="white",fg="#1E90FF").place(x=23,y=30)
+        Label(self.frame1,text="Password",font=("Arial",15,"bold"),bg="white",fg="#1E90FF").place(x=23,y=130)
+        self.ps=Entry(self.frame1,font=("Arial",18),show='*',bg="#F5F5F5",borderwidth=0)
+        self.ps.place(x=26,y=165,width=250)
+
+        #--------------Row2-----------------#
+
+        Label(self.frame1,text="Confirm Password",font=("Arial",15,"bold"),bg="white",fg="#1E90FF").place(x=23,y=205)
+        self.cp=Entry(self.frame1,font=("Arial",18),show="*",bg="#F5F5F5",borderwidth=0)
+        self.cp.place(x=26,y=240,width=250)
+    
+
+        

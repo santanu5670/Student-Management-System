@@ -1,0 +1,60 @@
+import mysql.connector
+from mysql.connector import Error
+import tkinter.messagebox as tsmg
+from reset_password import *
+from forgot_database import *
+class Reset_database(Reset):
+    def reset_data(self):
+        if self.ps.get()=='':
+            tsmg.showerror("Error","Password required")
+        elif self.cp.get()=='':
+            tsmg.showerror("Error","Confirm Password required")
+        else:
+            try:
+                # tsmg.showinfo("Candidate Id",f"Candidate id is {self.a1}")
+                # tsmg.showinfo("Security Question answer",f"Security Question answer is {self.a2}")
+                pass
+
+                # connection1=mysql.connector.connect(host='localhost',port='3307',database='student_management_system',user='root',password='root')
+
+                # query1=f"update user set password='{self.ps.get()}' where candidate_id={self.cd.get()} and Answer={self.sq.get()}"
+                # mycursor=connection1.cursor()
+                # mycursor.execute(query1)
+                # connection1.commit()
+
+                # connection2=mysql.connector.connect(host='localhost',port='3307',database='student_management_system',user='root',password='root')
+
+                # query2=f"update user set Confirm_Password='{self.cp.get()}' where candidate_id={self.cd.get()} and Answer={self.sq.get()}"
+                # mycursor1=connection2.cursor()
+                # mycursor1.execute(query2)
+                # connection2.commit()
+                # # connection1.close()
+
+                # self.destroy()
+                # import login_database as ld
+                # if __name__=='__main__':
+                #     ld.connection_login()
+                #     ld.mainloop()
+
+            except Error as e:
+                tsmg.showerror("Error",f"Error occur due to {str(e)}")
+    def login_window(self):
+        self.destroy()
+        import login_database as ld
+        if __name__=='__main__':
+            ld.connection_login()
+            ld.mainloop()
+
+class conection_reset(Reset_database):
+    def __init__(self):
+        super().__init__()
+        #--------------Row3-----------------#
+
+        self.btn_img1=ImageTk.PhotoImage(file="E:\Python(6th sem)\Tkinter\Student management System\\continue.jpg")
+        self.btn=Button(self.frame1,image=self.btn_img1,bd=0,bg="white",activebackground="white",cursor="hand2",command=self.reset_data).place(x=23,y=275)
+
+        #--------------Row4-----------------#
+        self.back_to_login=Button(self.frame1,text="Back to login",bg="white",bd=0,activebackground="white",fg="blue",activeforeground="blue",cursor="hand2",command=self.login_window).place(x=28,y=350)
+if __name__=='__main__':
+    window=conection_reset()
+    window.mainloop()

@@ -1,0 +1,42 @@
+from tkinter import *
+from tkinter.ttk import Combobox
+from PIL import Image,ImageTk #pip install pillow
+
+class Forgot_Password(Tk):
+    def __init__(self):
+        super().__init__()
+        self.geometry('644x344+0+0')
+        self['background']='#CCCCFF'
+        self.title('Student Management System')
+        p1=PhotoImage(file='E:\Python(6th sem)\Tkinter\Student management System\\NSEC_Logo.png')
+        self.iconphoto(False,p1)
+
+        #Image for Forgot Password page
+        self.left_img=PhotoImage(file="E:\Python(6th sem)\Tkinter\Student management System\\unnamed.png")
+        self.left_img_position=Label(self,image=self.left_img,background="#F5F5F5").place(x=330,y=130,width=350,height=460)
+
+        # Forgot Password Frame
+        self.frame1=Frame(self,bg="white")
+        self.frame1.place(x=680,y=130,width=370,height=460)
+
+        #--------------Row1-----------------#
+
+        Label(self.frame1,text="Forgot Your Password?",font=("Arial",20,"bold"),bg="white",fg="#1E90FF").place(x=20,y=30)
+        Label(self.frame1,text="Please put answer of your security question",font=("Arial",10),bg="White").place(x=23,y=70)
+
+        #--------------Row2-----------------#
+        Label(self.frame1,text="Candidate Id",font=("Arial",15,"bold"),bg="white",fg="#1E90FF").place(x=25,y=120)
+        self.cd=Entry(self.frame1,font=("Arial",18),bg="#F5F5F5",borderwidth=0)
+        self.cd.place(x=28,y=155,width=250)
+
+        #--------------Row3-----------------#
+
+        Label(self.frame1,text="Security Question",font=("Arial",15,"bold"),bg="white",fg="#1E90FF").place(x=25,y=195)
+        self.sq=Entry(self.frame1,font=("Arial",18),bg="#F5F5F5",borderwidth=0)
+        self.sq.place(x=28,y=230,width=250)
+
+        #--------------Row4-----------------#
+
+        Label(self.frame1,text="Passwoord",font=("Arial",15,"bold"),bg="white",fg="#1E90FF").place(x=25,y=270)
+        self.ps=Entry(self.frame1,font=("Arial",18),show='*',bg="#F5F5F5",borderwidth=0)
+        self.ps.place(x=28,y=305,width=250)
